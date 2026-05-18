@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Natan</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<!-- ICON -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:'Space Mono', monospace;
+    overflow:hidden;
+}
+
+/* STAR BACKGROUND */
+
+.stars{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+}
+
+.star{
+    position:absolute;
+    background:white;
+    border-radius:50%;
+    opacity:.8;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-100vh);
+    }
+}
+
+/* CENTER */
+
+.wrapper{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* CONTAINER */
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:rgba(0,0,0,.78);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:22px;
+    overflow:hidden;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(255,255,255,.03);
+}
+
+/* NAVBAR */
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 18px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+}
+
+.nav-links button{
+    background:none;
+    border:none;
+    color:#727272;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-links button.active,
+.nav-links button:hover{
+    color:#fff;
+}
+
+.help{
+    color:#727272;
+    font-size:16px;
+}
+
+/* CONTENT */
+
+.content{
+    padding:18px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* HOME */
+
+.title{
+    font-family:'Press Start 2P', cursive;
+    font-size:30px;
+    color:#fff;
+    line-height:1.2;
+}
+
+.bio{
+    margin-top:10px;
+    color:#7c7c7c;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* DISCORD */
+
+.discord-box{
+    margin-top:18px;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:14px;
+    padding:14px;
+    background:rgba(255,255,255,.01);
+}
+
+.discord-user{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.05);
+}
+
+.discord-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.username{
+    color:#fff;
+    font-size:15px;
+}
+
+.status{
+    color:#9b9b9b;
+    font-size:11px;
+    margin-top:2px;
+    text-transform:capitalize;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    display:inline-block;
+    margin-right:6px;
+}
+
+/* MUSIC */
+
+.music-text{
+    margin-top:22px;
+    color:#8b8b8b;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.player{
+    margin-top:12px;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:14px;
+    padding:14px;
+}
+
+.song{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.song img{
+    width:50px;
+    height:50px;
+    border-radius:8px;
+    object-fit:cover;
+}
+
+.song h3{
+    font-size:13px;
+    font-weight:400;
+}
+
+.song p{
+    color:#888;
+    font-size:11px;
+}
+
+.controls{
+    display:flex;
+    gap:14px;
+    margin-top:14px;
+    font-size:15px;
+    color:#fff;
+}
+
+.controls i{
+    cursor:pointer;
+}
+
+.bar{
+    width:100%;
+    height:4px;
+    background:#151515;
+    border-radius:20px;
+    margin-top:14px;
+    overflow:hidden;
+}
+
+.fill{
+    width:0%;
+    height:100%;
+    background:#fff;
+}
+
+.time{
+    display:flex;
+    justify-content:space-between;
+    margin-top:8px;
+    color:#707070;
+    font-size:11px;
+}
+
+/* PROJECT */
+
+.project-text{
+    color:#8a8a8a;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:14px;
+}
+
+.project-card{
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.project-card h3{
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.project-card p{
+    color:#8d8d8d;
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* CONTACT */
+
+.contact-text{
+    color:#8b8b8b;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:14px;
+}
+
+.contact-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:12px;
+    text-decoration:none;
+    transition:.3s;
+    background:rgba(255,255,255,.01);
+}
+
+.contact-card:hover{
+    border-color:rgba(255,255,255,.10);
+}
+
+.contact-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:#0f0f0f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:15px;
+    color:#fff;
+}
+
+.contact-info h3{
+    color:#999;
+    font-size:12px;
+    font-weight:400;
+    margin-bottom:3px;
+}
+
+.contact-info p{
+    color:#fff;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.container{
+    max-width:100%;
+}
+
+.title{
+    font-size:26px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="wrapper">
+
+<div class="container">
+
+    <div class="nav">
+
+        <div class="nav-links">
+            <button class="tab-btn active" data-tab="home">home</button>
+            <button class="tab-btn" data-tab="projects">projects</button>
+            <button class="tab-btn" data-tab="contact">contact</button>
+        </div>
+
+        <div class="help">[?]</div>
+
+    </div>
+
+    <div class="content">
+
+        <!-- HOME -->
+        <div class="page active" id="home">
+
+            <div class="title">natan</div>
+
+            <div class="bio">
+                beginner developer exploring web technologies
+            </div>
+
+            <!-- DISCORD -->
+            <div class="discord-box">
+
+                <div class="discord-user">
+
+                    <img
+                    id="discord-avatar"
+                    class="avatar"
+                    src="https://cdn.discordapp.com/embed/avatars/0.png">
+
+                    <div class="discord-info">
+
+                        <div
+                        class="username"
+                        id="discord-name">
+                            Loading...
+                        </div>
+
+                        <div
+                        class="status"
+                        id="discord-status">
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- MUSIC -->
+            <div class="music-text">
+                currently in rotation — a personal collection of music i've been listening to lately
+            </div>
+
+            <div class="player">
+
+                <div class="song">
+
+                    <img
+                    id="music-cover"
+                    src="https://raw.githubusercontent.com/8C4F/spotify/refs/heads/main/9b0942ee85c79fdfa0e82bf4a5539578.jpg">
+
+                    <div>
+
+                        <h3 id="music-title">
+                            Flex
+                        </h3>
+
+                        <p id="music-artist">
+                            Playboi Carti ft Leven Kali
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- AUDIO -->
+                <audio
+                id="audio"
+                src="https://raw.githubusercontent.com/8C4F/spotify/main/-%20Playboi%20Carti%20%20Flex%20Official%20Audio%20ft%20Leven%20Kal.mp3">
+                </audio>
+
+                <!-- CONTROL -->
+                <div class="controls">
+
+                    <i class="fa-solid fa-backward"></i>
+
+                    <i class="fa-solid fa-play"
+                    id="play-btn"></i>
+
+                    <i class="fa-solid fa-forward"></i>
+
+                </div>
+
+                <!-- BAR -->
+                <div class="bar">
+
+                    <div
+                    class="fill"
+                    id="progress">
+                    </div>
+
+                </div>
+
+                <!-- TIME -->
+                <div class="time">
+
+                    <span id="current">
+                        0:00
+                    </span>
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PROJECT -->
+        <div class="page" id="projects">
+
+            <div class="project-text">
+                some projects and systems i'm currently developing
+            </div>
+
+            <div class="project-card">
+
+                <h3>Personal Website</h3>
+
+                <p>
+                    minimalist personal portfolio website with realtime discord
+                    presence, animated space background and interactive sections.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CONTACT -->
+        <div class="page" id="contact">
+
+            <div class="contact-text">
+                feel free to reach out through any of these platforms
+            </div>
+
+            <a href="https://discord.gg/JTsnuDSuAd"
+            target="_blank"
+            class="contact-card">
+
+                <div class="contact-icon">
+                    <i class="fa-brands fa-discord"></i>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Discord</h3>
+                    <p>Realize</p>
+                </div>
+
+            </a>
+
+            <a href="https://github.com/xntnnz"
+            target="_blank"
+            class="contact-card">
+
+                <div class="contact-icon">
+                    <i class="fa-brands fa-github"></i>
+                </div>
+
+                <div class="contact-info">
+                    <h3>GitHub</h3>
+                    <p>xntnnz</p>
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+/* STAR EFFECT */
+
+const stars = document.getElementById('stars');
+
+for(let i = 0; i < 120; i++){
+
+    const star = document.createElement('div');
+
+    star.classList.add('star');
+
+    const size = Math.random() * 2.5;
+
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * 100 + 'vh';
+
+    star.style.animationDuration =
+    (Math.random() * 10 + 5) + 's';
+
+    stars.appendChild(star);
+
+}
+
+/* TAB SYSTEM */
+
+const buttons =
+document.querySelectorAll('.tab-btn');
+
+const pages =
+document.querySelectorAll('.page');
+
+buttons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        buttons.forEach(btn =>
+        btn.classList.remove('active'));
+
+        pages.forEach(page =>
+        page.classList.remove('active'));
+
+        button.classList.add('active');
+
+        document
+        .getElementById(button.dataset.tab)
+        .classList.add('active');
+
+    });
+
+});
+
+/* DISCORD */
+
+const discordId = "304067207120289814";
+
+const statusColors = {
+
+    online: "#43b581",
+    idle: "#faa61a",
+    dnd: "#f04747",
+    offline: "#747f8d"
+
+};
+
+const discordName =
+document.getElementById("discord-name");
+
+const discordAvatar =
+document.getElementById("discord-avatar");
+
+const discordStatus =
+document.getElementById("discord-status");
+
+async function loadDiscord(){
+
+    try{
+
+        const response = await fetch(
+        `https://api.lanyard.rest/v1/users/304067207120289814`
+        );
+
+        const json = await response.json();
+
+        const data = json.data;
+
+        discordName.innerText =
+        data.discord_user.global_name ||
+        data.discord_user.username;
+
+        discordAvatar.src =
+        `https://cdn.discordapp.com/avatars/${discordId}/${data.discord_user.avatar}.png?size=512`;
+
+        let status = data.discord_status;
+
+        if(data.active_on_discord_mobile){
+
+            status = "online";
+
+        }
+
+        discordStatus.innerHTML = `
+        <span class="status-dot"
+        style="background:${statusColors[status]}">
+        </span>
+        ${status}
+        `;
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+loadDiscord();
+
+setInterval(loadDiscord, 15000);
+
+/* MUSIC PLAYER */
+
+const audio =
+document.getElementById("audio");
+
+const playBtn =
+document.getElementById("play-btn");
+
+const progress =
+document.getElementById("progress");
+
+const current =
+document.getElementById("current");
+
+const duration =
+document.getElementById("duration");
+
+/* PLAY */
+
+playBtn.addEventListener("click", () => {
+
+    if(audio.paused){
+
+        audio.play();
+
+        playBtn.classList.remove("fa-play");
+        playBtn.classList.add("fa-pause");
+
+    }else{
+
+        audio.pause();
+
+        playBtn.classList.remove("fa-pause");
+        playBtn.classList.add("fa-play");
+
+    }
+
+});
+
+/* DURATION */
+
+audio.addEventListener("loadedmetadata", () => {
+
+    duration.innerText =
+    formatTime(audio.duration);
+
+});
+
+/* PROGRESS */
+
+audio.addEventListener("timeupdate", () => {
+
+    const percent =
+    (audio.currentTime / audio.duration) * 100;
+
+    progress.style.width =
+    percent + "%";
+
+    current.innerText =
+    formatTime(audio.currentTime);
+
+});
+
+/* RESET */
+
+audio.addEventListener("ended", () => {
+
+    playBtn.classList.remove("fa-pause");
+    playBtn.classList.add("fa-play");
+
+    progress.style.width = "0%";
+
+});
+
+/* FORMAT */
+
+function formatTime(time){
+
+    const minutes =
+    Math.floor(time / 60);
+
+    const seconds =
+    Math.floor(time % 60);
+
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+}
+
+</script>
+
+</body>
+</html>
